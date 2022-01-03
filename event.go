@@ -84,6 +84,7 @@ func (handler *EventHandler) Call(args... interface{}) {
 
 	handler.Lock()
 	defer handler.Unlock()
+	handler.eventCount++
 	for e := handler.handlers.Front(); e != nil; e = next {
 		callable := e.Value.(*EventCallable)
 		next = e.Next()
